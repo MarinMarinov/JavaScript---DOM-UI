@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Snake Game</title>
+    <style>
+        canvas{
+            /*width: 1000px; //TODO fucking sing
+            height: 500px;*/
+            border: 2px solid black;
+            float: left;
+        }
+
+        #score{
+            margin-left: 10px;
+            width: 100px;
+            height: 50px;
+            border: 2px solid black;
+            float: left;
+
+        }
+
+        #top-results{
+            margin-left: 10px;
+            margin-top: 10px;
+            width: 100px;
+            height: 50px;
+            border: 2px solid black;
+            float: left;
+
+        }
+
+        #button{
+            margin-left: 10px;
+            margin-top: 10px;
+            /*width: 50px;
+            height: 50px;*/
+            border: 2px solid black;
+            float: left;
+
+        }
+    </style>
+</head>
+<body onload="ready()">
+    <canvas id="canvas" width="1000" height="500"></canvas> <!--TODO there is BIG difference to initialize the dimension here or in the stylesheet-->
+    <div id="score"></div>
+    <div id="top-results"></div>
+    <button id="button">Restart game</button>
+
+    <script src="snake.js"></script>
+</body>
+</html>

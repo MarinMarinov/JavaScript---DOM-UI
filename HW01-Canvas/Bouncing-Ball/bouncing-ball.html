@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bouncing ball in a window</title>
+    <style>
+        canvas{
+            border: 2px solid black;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="1000" height="500"></canvas>
+    <script>
+        var canvas = document.getElementById('canvas'),
+        ctx = canvas.getContext('2d'),
+        pointX = 20,
+        pointY = 20,
+        ballRadius = 10,
+                startAngel = 0,
+                endAngel = 2 * Math.PI,
+                incrementX = Math.random()*10 | 0,
+                incrementY = Math.random()*10 | 0;
+
+        ctx.fillStyle = 'yellow';
+        ctx.strokeStyle = 'green';
+        ctx.lineWidth = '3';
+
+        function moveBall(){
+            ctx.clearRect(0, 0 , canvas.width, canvas.height);
+
+            if(pointY > canvas.height || pointY < 0){
+                incrementY *= -1;
+            }
+            if(pointX > canvas.width || pointX < 0){
+                incrementX *= -1;
+            }
+
+            visualizeBall(pointX, pointY, ballRadius, startAngel, endAngel);
+
+            pointX += incrementX;
+            pointY += incrementY;
+
+            requestAnimationFrame(moveBall);
+        }
+
+        function visualizeBall(pointX, pointY, ballRadius, startAngel, endAngel){
+            ctx.beginPath();
+            ctx.arc(pointX, pointY, ballRadius, startAngel, endAngel);
+            //ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+        }
+
+        moveBall();
+
+    </script>
+</body>
+</html>

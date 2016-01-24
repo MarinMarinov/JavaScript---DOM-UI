@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 3</title>
+    <script src="libs/handlebars-v3.0.3.js"></script>
+    <script src="libs/jQuery-v2.1.4.js"></script>
+</head>
+<body>
+    <ul id="books-list" data-template="book-item-template"></ul>
+
+    <script id="book-item-template" type="text/x-handlebars-template">
+        {{#each books}}
+            <li class="book-item">
+                <a href="/#books/{{id}}">
+                    <strong>{{title}}</strong>
+                </a>
+            </li>
+        {{/each}}
+    </script>
+    <script>
+        //var data = { books: [{title: 'JavaScript: The Good Parts', id: 1}, {title: 'Secrets of the JavaScript Ninja', id: 2}, {title: 'JavaScript Patterns', id: 3}]};
+        /*var html = document.getElementById('book-item-template').innerHTML;
+        var ul = document.getElementById('books-list');
+
+        var template = Handlebars.compile(html);
+        var result = template(data);
+        ul.innerHTML = result;*/
+
+
+        var books = [{title: 'JavaScript: The Good Parts', id: 1}, {title: 'Secrets of the JavaScript Ninja', id: 2}, {title: 'JavaScript Patterns', id: 3}];
+
+        $.fn.listview = function(data){
+            //console.log(this);
+            var $this = this;
+            //console.log($this);
+            var template = $("#" + $this.attr('data-template')).html();
+
+            var compiledTemplate = Handlebars.compile(template); // Not Handlebars, but handlebars???????????
+
+            for(var i = 0, len = data.length; i < len; i+=1){
+                $this.append(compiledTemplate(data[i]))
+            }
+
+            return this;
+        };
+
+        $('#books-list').listview(books);
+
+    </script>
+
+</body>
+</html>

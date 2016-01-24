@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #the-canvas{
+        border: 2px solid black;
+    }
+    </style>
+</head>
+<body>
+    <canvas id="the-canvas" width="542" height="342"></canvas>
+    <script>
+        var canvas = document.getElementById('the-canvas');
+        var ctx = canvas.getContext('2d');
+        var wheelCenterY = 245,
+                wheelRadius = 90,
+                wheelDistance = 356;
+
+        ctx.fillStyle = '#90CAD7';
+        ctx.strokeStyle = '#347F91';
+        ctx.lineWidth = 4;
+
+        // back wheel
+        //ctx.moveTo(wheelRadius, wheelCenterY);
+        ctx.beginPath();
+        ctx.arc(wheelRadius, wheelCenterY, wheelRadius, 0, 2 * Math.PI);
+        //ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        // front wheel
+        //ctx.moveTo(wheelRadius + wheelDistance, wheelCenterY);
+        ctx.beginPath();
+        ctx.arc(wheelRadius + wheelDistance, wheelCenterY, wheelRadius, 0, 2 * Math.PI);
+        //ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        // fork and stem
+        ctx.moveTo(wheelRadius + wheelDistance, wheelCenterY);
+        ctx.lineCap = 'round';
+        ctx.lineTo(415, 60);
+        ctx.lineTo(345, 80);
+        ctx.lineTo(415, 60);
+        ctx.lineTo(466, 2);
+        ctx.stroke();
+        ctx.save();
+
+        // right handlebar
+        ctx.beginPath();
+        ctx.scale(1.5, 1);
+        ctx.arc(/*466*/ 311, 17, 15, 270 * Math.PI / 180, 90 * Math.PI / 180);
+        ctx.stroke();
+        ctx.restore();
+
+        // left handlebar
+        ctx.save();
+        ctx.beginPath();
+        ctx.scale(1.5, 1);
+        ctx.rotate(15 * Math.PI / 180);
+        ctx.arc(244, 32, 15, 270 * Math.PI / 180, 90 * Math.PI / 180);
+        ctx.stroke();
+        ctx.restore();
+
+        // frame
+        ctx.moveTo(wheelRadius, wheelCenterY);
+        ctx.lineTo(255, 241);
+        ctx.lineTo(424, 125);
+        ctx.lineTo(204, 127);
+        ctx.lineTo(wheelRadius, wheelCenterY);
+        ctx.lineJoin = 'round';
+        ctx.stroke();
+
+        // seat tube, seatpost and seat
+        ctx.moveTo(255, 241);
+        ctx.lineTo(204, 127);
+        ctx.lineTo(185, 84);
+        ctx.lineTo(162, 82);
+        ctx.lineTo(215, 82);
+        ctx.stroke();
+
+        // chainring and pedals
+        ctx.moveTo(255, 241);
+        ctx.beginPath();
+        ctx.arc(255, 241, 26, 0, 2 * Math.PI);
+        ctx.closePath();
+        ctx.moveTo(255, 241);
+        ctx.lineTo(290, 271);
+        ctx.moveTo(255, 241);
+        ctx.lineTo(220, 211);
+        ctx.stroke();
+
+        // just a try
+        //ctx.moveTo(300, 50);
+        ctx.beginPath();
+        ctx.arc(300, 50, 10, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.stroke();
+    </script>
+</body>
+</html>
